@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 // import { createMocks } from "node-mocks-http";
 import supertest from "supertest";
-import handler from "./route";
+// import handler from "./route";
 import connectDb from "@/utils/db";
 
 describe("api routing test", () => {
