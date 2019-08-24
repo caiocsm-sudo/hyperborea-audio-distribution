@@ -1,27 +1,25 @@
-import connectDb from "@/utils/db";
-import mongoose from "mongoose";
-import { NextApiRequest, NextApiResponse } from "next";
-// import { NextResponse } from "next/server";
+import connectDb from "@/utils/db"
+import mongoose from "mongoose"
+import { NextApiRequest, NextApiResponse } from "next"
+import { NextResponse } from "next/server"
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  await connectDb(process.env.MONGODB_URI as string);
+export async function GET(req: NextApiRequest, res: NextApiResponse) {
+  await connectDb()
+  const TestModel = mongoose.model(
+    "Test",
+    new mongoose.Schema({ name: String })
+  )
 
-  if(req.method === "GET") {
-    const TestModel = mongoose.model("Test", new mongoose.Schema({ name: String }));
+  const test = new TestModel({ name: "jest mock fock function" })
 
-    const test = new TestModel({ name: "jest mock fock function" });
+  console.log(req.method)
 
-    await test.save();
+  await test.save()
 
-    console.log("mechanic hill");
-
-    return res.json({ message: "success", result: test });
-  }
-
-  if (req.method === 'DELETE') {
-    console.log(req.query.id);
-
-    res.json({ id: req.query.id });
-  }
+  return NextResponse.json({ message: "success", result: test })
 }
 
+export async function DELETE(req: NextApiRequest, res: NextApiResponse) {
+  console.log(req.query)
+}
+k
