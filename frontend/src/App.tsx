@@ -1,9 +1,11 @@
+import Header from "./partials/Header";
+
 function App() {
   return (
     <>
-      <h1>vou dar meu cu e meu vaginão</h1>
+      <Header></Header>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
