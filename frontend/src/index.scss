@@ -1,0 +1,70 @@
+@use "./scss/variables/variables.scss";
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: "Manrope", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.default-btn {
+  padding: 0.6rem;
+  border: none;
+  border-radius: 0.3rem;
+  background-color: variables.$yellow;
+  color: variables.$dark;
+  transition: variables.$def-transition;
+  font-weight: bold;
+  cursor: pointer;
+
+  &:hover {
+    background-color: variables.$yellow-dark;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    & .ulist {
+      display: none;
+    }
+
+    & .resp-nav-btn {
+      display: block;
+    }
+  }
+}
+
+.transparent-btn {
+  background-color: transparent;
+  color: variables.$white;
+  transition: variables.$def-transition;
+
+  &:hover {
+    background-color: variables.$white-transparent;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

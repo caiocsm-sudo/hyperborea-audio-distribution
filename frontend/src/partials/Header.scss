@@ -1,0 +1,27 @@
+@use "../scss/mixins/mixins.scss";
+@use "../scss/variables/variables.scss";
+
+.header {
+  @include mixins.flexBetween;
+  padding: 0.4rem 1.2rem;
+  background-color: variables.$dark;
+  color: variables.$white;
+
+  & h1 {
+    font-size: 1.15rem;
+  }
+
+  & .ulist {
+    @include mixins.flexDef;
+    gap: 0.7rem;
+
+    & a {
+      color: inherit;
+      transition: variables.$def-transition;
+
+      &:hover {
+        color: variables.$yellow;
+      }
+    }
+  }
+}
