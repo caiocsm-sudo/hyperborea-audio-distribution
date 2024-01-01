@@ -30,8 +30,4 @@ const albumSchema = new Schema({
   },
 });
 
-albumSchema.pre("save", () => {
-
-});
-
 export default albumSchema;
