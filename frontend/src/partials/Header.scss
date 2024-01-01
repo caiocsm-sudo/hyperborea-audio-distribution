@@ -2,17 +2,41 @@
 @use "../scss/variables/variables.scss";
 
 .header {
-  @include mixins.flexBetween;
+  @include mixins.flexDef;
+  flex-direction: column;
+  justify-content: space-between;
   padding: 0.4rem 1.2rem;
-  background-color: variables.$dark;
-  color: variables.$white;
+  border-right: 1px solid variables.$hypeborea-transparent;
+  // background-color: variables.$dark;
+  color: variables.$hyperborea-dark;
+  width: 12%;
+
+  height: 100vh;
+
+  & .img-container {
+    width: 100%;
+    padding: 1rem;
+
+    & img {
+      width: 100%;
+    }
+  }
 
   & h1 {
     font-size: 1.15rem;
   }
 
+  & button {
+    color: variables.$hyperborea-dark;
+    transition: var(variables.$def-transition);
+    &:hover {
+      background-color: variables.$hypeborea-transparent;
+    }
+  }
+
   & .ulist {
     @include mixins.flexDef;
+    flex-direction: column;
     gap: 0.7rem;
 
     & a {
@@ -20,7 +44,7 @@
       transition: variables.$def-transition;
 
       &:hover {
-        color: variables.$yellow;
+        color: variables.$hyperborea-bright;
       }
     }
   }
