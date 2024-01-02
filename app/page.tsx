@@ -1,13 +1,13 @@
-import "./styles/home.scss";
+import Image from "next/image";
+import hyperboreaBlack from "@/public/hyperborea preto.png";
 
 export default function Home() {
   return (
     <>
       <section className="main-page">
-        <img src="/hyperborea-black.png" alt="hyperborea logo" />
+        <Image src={hyperboreaBlack} alt="Hyperborea logo"/>
         <h2 className="main__title">Explore Hyperborea complete discography</h2>
       </section>
     </>
   );
 }
-

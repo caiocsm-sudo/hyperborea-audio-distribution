@@ -1,17 +1,20 @@
-import { PersonIcon, ExitIcon, HamburgerMenuIcon } from "@radix-ui/react-icons";
-import { Link } from "react-router-dom";
-import hyperboreaWhite from "/hyperborea-black.png";
-import "./Header.scss";
-import { useState } from "react";
+"use client";
 
-const Header = () => {
+import { useState } from "react";
+import { HamburgerMenuIcon, PersonIcon, ExitIcon } from "@radix-ui/react-icons";
+import Link from "next/link";
+import Image from "next/image";
+import hyperboreaWhite from "@/public/hyperborea preto.png";
+import "@/styles/header.scss";
+
+export function Header(): JSX.Element {
   const [isLogged, _setIsLogged] = useState<boolean>(false);
 
   return (
     <header className="header">
       <div className="img-container">
-        <Link to="/">
-          <img src={hyperboreaWhite} alt="hpb logo" />
+        <Link href="/">
+          <Image src={hyperboreaWhite} alt="hpb logo" />
         </Link>
       </div>
       <nav>
@@ -20,16 +23,16 @@ const Header = () => {
         </button>
         <ul className="ulist">
           <li>
-            <Link to="/">Home</Link>
+            <Link href="/">Home</Link>
           </li>
           <li>
-            <a href="">Store</a>
+            <Link href="/store">Store</Link>
           </li>
           <li>
-            <a href="">About</a>
+            <Link href="/about">About</Link>
           </li>
           <li>
-            <a href="">Extras</a>
+            <Link href="/extras">Extras</Link>
           </li>
         </ul>
       </nav>
@@ -47,6 +50,4 @@ const Header = () => {
       </div>
     </header>
   );
-};
-
-export default Header;
+}

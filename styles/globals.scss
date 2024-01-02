@@ -1,4 +1,4 @@
-@use "./scss/variables/variables.scss";
+@use "./variables/variables.scss";
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
 
 * {
@@ -17,6 +17,14 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.main-app {
+  display: grid;
+  grid-template-rows: 100%;
+  grid-template-columns: 15% 85%;
+  min-height: 100vh;
+  width: 100%;
 }
 
 .default-btn {

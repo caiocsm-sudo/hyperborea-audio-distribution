@@ -1,5 +1,5 @@
-@use "../scss/mixins/mixins.scss";
-@use "../scss/variables/variables.scss";
+@use "./mixins/mixins.scss";
+@use "./variables/variables.scss";
 
 .header {
   @include mixins.flexDef;
