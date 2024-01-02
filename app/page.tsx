@@ -1,5 +1,6 @@
 import Image from "next/image";
 import hyperboreaBlack from "@/public/hyperborea preto.png";
+import "@/styles/home.scss"
 
 export default function Home() {
   return (
