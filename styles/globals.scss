@@ -1,5 +1,7 @@
 @use "./variables/variables.scss";
+
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+
 
 * {
   padding: 0;
@@ -19,7 +21,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.main-app {
+.main-app, #app {
   display: grid;
   grid-template-rows: 100%;
   grid-template-columns: 15% 85%;
