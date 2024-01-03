@@ -1,35 +1,27 @@
-import connectToDb from "@/utils/db";
-import { NextApiRequest } from "next";
-import { NextResponse } from "next/server";
+import connectDb from "@/utils/db";
+import mongoose from "mongoose";
+import { NextApiRequest, NextApiResponse } from "next";
+// import { NextResponse } from "next/server";
 
-export async function GET(res: NextResponse) {
-  try {
-    const { db } = await connectToDb();
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  await connectDb(process.env.MONGODB_URI as string);
 
-    const result = await db
-      .collection("test")
-      .insertOne({ title: "test 1", date: Date.now() });
+  if(req.method === "GET") {
+    const TestModel = mongoose.model("Test", new mongoose.Schema({ name: String }));
 
-    console.log(result);
+    const test = new TestModel({ name: "jest mock fock function" });
 
-    return NextResponse.json({ message: "success", result: result });
-  } catch (error) {
-    NextResponse.json({ message: "error", error });
+    await test.save();
+
+    console.log("mechanic hill");
+
+    return res.json({ message: "success", result: test });
+  }
+
+  if (req.method === 'DELETE') {
+    console.log(req.query.id);
+
+    res.json({ id: req.query.id });
   }
 }
 
-export async function DELETE(req: NextApiRequest, res: NextResponse) {
-  try {
-    const id: string = req.body.id;
-
-    console.log(id);
-
-    const documentId = "659477839a1cfb4dec9aa7c1";
-
-    console.log(documentId);
-
-    return NextResponse.json({ id });
-  } catch (error) {
-    return NextResponse.json({ id: "fail", error });
-  }
-}
