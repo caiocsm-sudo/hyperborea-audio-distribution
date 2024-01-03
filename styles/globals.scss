@@ -2,7 +2,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
 
-
 * {
   padding: 0;
   margin: 0;
@@ -14,6 +13,8 @@
   font-size: 13px;
   line-height: 1.5;
   font-weight: 400;
+
+  background-color: variables.$white-background;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -33,14 +34,14 @@
   padding: 0.6rem;
   border: none;
   border-radius: 0.3rem;
-  background-color: variables.$yellow;
-  color: variables.$dark;
+  background-color: variables.$hyperborea;
+  color: variables.$white;
   transition: variables.$def-transition;
   font-weight: bold;
   cursor: pointer;
 
   &:hover {
-    background-color: variables.$yellow-dark;
+    background-color: variables.$hyperborea-dark;
   }
 }
 
@@ -68,6 +69,25 @@
   &:hover {
     background-color: variables.$white-transparent;
   }
+}
+
+.input-def {
+  padding: 0.5rem;
+  border: 1px solid variables.$hyperborea;
+  border-radius: 0.3rem;
+  width: 100%;
+  transition: variables.$def-transition;
+
+  &:focus {
+    border: 1px solid variables.$hyperborea-darker;
+    box-shadow: 1px 1px 5px variables.$hyperborea-transparent;
+    outline: none;
+  }
+}
+
+.label-def {
+  display: block;
+  color: variables.$hyperborea-darker;
 }
 
 .hidden {

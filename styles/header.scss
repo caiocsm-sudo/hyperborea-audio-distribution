@@ -6,7 +6,7 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 0.4rem 1.2rem;
-  border-right: 1px solid variables.$hypeborea-transparent;
+  border-right: 1px solid variables.$hyperborea-transparent;
   // background-color: variables.$dark;
   color: variables.$hyperborea-dark;
   width: 100%;
@@ -30,7 +30,7 @@
     color: variables.$hyperborea-dark;
     transition: var(variables.$def-transition);
     &:hover {
-      background-color: variables.$hypeborea-transparent;
+      background-color: variables.$hyperborea-transparent;
     }
   }
 

@@ -1,0 +1,47 @@
+@use "./variables/variables.scss";
+
+.extra {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  padding: 1rem;
+
+  & .form--container {
+    border: 1px solid variables.$hyperborea;
+    padding: 1.2rem;
+    border-radius: 0.4rem;
+    width: 40%;
+
+    & form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      & .input__file--label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+        padding: 0.5rem;
+        border: 1px dotted variables.$hyperborea-dark;
+        border-radius: 0.3rem;
+        cursor: pointer;
+        transition: variables.$def-transition;
+
+        &:hover {
+          background-color: variables.$hyperborea-transparent;
+        }
+
+        & .input__file--hidden {
+          display: none;
+        }
+      }
+      & button {
+        width: 100%;
+      }
+    }
+  }
+}
