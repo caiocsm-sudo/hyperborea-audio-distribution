@@ -8,6 +8,7 @@ export default function Home() {
       <section className="main-page">
         <Image src={hyperboreaBlack} alt="Hyperborea logo"/>
         <h2 className="main__title">Explore Hyperborea complete discography</h2>
+        <p>Oi galera</p>
       </section>
     </>
   );
