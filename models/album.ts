@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const Album = new mongoose.Schema({
+const albumSchema = new mongoose.Schema({
   title: {
     type: String,
     required: [true, "An album must have a title"],
@@ -11,20 +11,27 @@ const Album = new mongoose.Schema({
     required: [true, "An album must be from an artist"],
     trim: true,
   },
+  coverImage: {
+    type: String,
+    required: [true, "An album must have an cover image"],
+  },
   genre: {
     type: String,
     required: [true, "An album must have a genre"],
     trim: true,
   },
-  year: {
-
+  releaseYear: {
+    type: Number,
+    default: new Date().getFullYear(),
+    immutable: true,
   },
   trackList: {
-    type: [String],
-    required: [true, "An album must have a track list"],
-    min: 2
-  }
+    // maybe later change to [String] instead of ObjectId;
+    type: [mongoose.SchemaTypes.ObjectId],
+    min: 2,
+  },
 });
 
-export default Album;
+const Album = mongoose.model("Album", albumSchema);
 
+export default Album;
