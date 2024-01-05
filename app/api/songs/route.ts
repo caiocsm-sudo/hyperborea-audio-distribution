@@ -8,7 +8,7 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
-  const bodyData = await req.body;
+  const bodyData = req.body;
 
   return NextResponse.json({ status: "success", bodyData });
 }
