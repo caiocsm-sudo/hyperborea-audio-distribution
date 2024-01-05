@@ -1,9 +1,20 @@
+@use "./mixins/mixins.scss";
+@use "./variables/variables.scss";
+
 .main-page {
-  height: 95%;
+  @include mixins.flexCenter;
+  height: 100%;
+  padding: 3rem;
 
   & .main__title {
-    font-size: 1rem;
+    font-size: 4rem;
   }
+
+  & .main__description {
+    font-size: 1.3rem;
+    color: variables.$hyperborea-gray;
+  }
+
   & img {
     height: 150px;
     width: 150px;

@@ -9,10 +9,12 @@
   padding: 1rem;
 
   & .form--container {
-    border: 1px solid variables.$hyperborea;
+    // border: 1px solid variables.$hyperborea;
     padding: 1.2rem;
     border-radius: 0.4rem;
     width: 40%;
+    border: 1px solid variables.$hyperborea-transparent;
+    box-shadow: 2px 2px 5px variables.$hyperborea-transparent;
 
     & form {
       display: flex;
@@ -32,7 +34,7 @@
         transition: variables.$def-transition;
 
         &:hover {
-          background-color: variables.$hyperborea-transparent;
+          background-color: variables.$white-transparent;
         }
 
         & .input__file--hidden {

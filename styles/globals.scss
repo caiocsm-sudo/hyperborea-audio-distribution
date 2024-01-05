@@ -73,21 +73,19 @@
 
 .input-def {
   padding: 0.5rem;
-  border: 1px solid variables.$hyperborea;
+  border: 1px solid variables.$hyperborea-transparent;
   border-radius: 0.3rem;
   width: 100%;
-  transition: variables.$def-transition;
 
   &:focus {
-    border: 1px solid variables.$hyperborea-darker;
-    box-shadow: 1px 1px 5px variables.$hyperborea-transparent;
-    outline: none;
+    outline: 1px solid variables.$blue-inp;
   }
 }
 
 .label-def {
   display: block;
   color: variables.$hyperborea-darker;
+  font-weight: 500;
 }
 
 .hidden {

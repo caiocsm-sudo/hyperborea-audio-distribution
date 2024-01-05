@@ -1,15 +1,24 @@
 import Image from "next/image";
 import hyperboreaBlack from "@/public/hyperborea preto.png";
-import "@/styles/home.scss"
+import "@/styles/home.scss";
 
 export default function Home() {
   return (
     <>
       <section className="main-page">
-        <Image src={hyperboreaBlack} alt="Hyperborea logo"/>
-        <h2 className="main__title">Explore Hyperborea complete discography</h2>
-        <p>Oi galera</p>
+        <div>
+          <h1 className="main__title">Hyperborea Sound Distribution</h1>
+          <div>
+            <p className="main__description">
+              A label that focus on exploring the various sound of electronic, jazz and funk music to beyond imagination, as far as we can.
+            </p>
+          </div>
+          <div className="main__links">
+            <i></i>
+          </div>
+        </div>
       </section>
     </>
   );
 }
+
