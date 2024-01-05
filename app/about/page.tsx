@@ -17,6 +17,7 @@ export default function About(): JSX.Element {
     const res = await axios.get("/api/artists");
     setData(res.data);
   }
+
   useEffect(() => {
     getPost();
   }, []);
