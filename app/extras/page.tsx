@@ -9,23 +9,23 @@ export default function Extras() {
           <h2>Hyperborea Album Form</h2>
           <div>
             <label className="label-def">Title</label>
-            <input className="input-def" type="text" id="title" placeholder="album title"/>
+            <input className="input-def" type="text" id="title" placeholder="Album title"/>
           </div>
           <div>
             <label className="label-def">Artist</label>
-            <input className="input-def" type="text" id="artist" placeholder="artist name" />
+            <input className="input-def" type="text" id="artist" placeholder="Artist name" />
           </div>
           <div>
             <label className="label-def">Genre</label>
-            <input className="input-def" type="text" id="genre" placeholder="genre name" />
+            <input className="input-def" type="text" id="genre" placeholder="Genre name" />
           </div>
           <div>
             <label className="label-def">Year</label>
-            <input className="input-def" type="number" id="year" placeholder="release year" />
+            <input className="input-def" type="number" id="year" placeholder="Release year" />
           </div>
           <div>
             <label className="label-def">Tunes (separate with comma)</label>
-            <input className="input-def" type="text" id="tunes" placeholder="track list" />
+            <input className="input-def" type="text" id="tunes" placeholder="Track list" />
           </div>
           <div>
             <label className="label-def input__file--label">
