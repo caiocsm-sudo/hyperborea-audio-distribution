@@ -1,28 +1,11 @@
-"use client";
+import axios from "axios"
+import "@/styles/about.scss"
 
-import axios from "axios";
-import { useEffect, useState } from "react";
+export default async function About() {
+  const res = await fetch("http://localhost:3000/api/artists")
+  const data = await res.json()
 
-// import "@/styles/about.scss";
-
-type Artist = {
-  name: string,
-  real_name: string;
-  age: number
-};
-
-export default function About(): JSX.Element {
-  const [data, setData] = useState<Artist>();
-  const getPost = async () => {
-    const res = await axios.get("/api/artists");
-    setData(res.data);
-  }
-
-  useEffect(() => {
-    getPost();
-  }, []);
-
-  console.log(data);
+  console.log(data)
 
   return (
     <article>
@@ -31,8 +14,14 @@ export default function About(): JSX.Element {
         <p>baby</p>
       </div>
       <p>
-        { data ? (<p>{data.name}, {data.real_name}</p>) : "" }
+        {data ? (
+          <span>
+            {data.name}, {data.real_name}
+          </span>
+        ) : (
+          ""
+        )}
       </p>
     </article>
-  );
+  )
 }
