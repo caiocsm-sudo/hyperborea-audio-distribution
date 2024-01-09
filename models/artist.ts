@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from "mongoose"
 
 const artistSchema = new mongoose.Schema({
   name: {
@@ -6,22 +6,22 @@ const artistSchema = new mongoose.Schema({
     required: [true, "An artist must have a name"],
     trim: true,
     minLength: 2,
-    maxLength: 40
+    maxLength: 40,
   },
   bio: {
     type: String,
     default: "This artist has no bio yet.",
     minLength: 10,
-    maxLength: 150
+    maxLength: 150,
   },
   links: {
-    type: [String]
+    type: [String],
   },
   releases: {
     type: [String],
   },
-});
+})
 
-const Artist = mongoose.model("Artist", artistSchema);
+const Artist = mongoose.model("Artist", artistSchema)
 
-export default Artist;
+export default Artist
