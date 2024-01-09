@@ -39,9 +39,11 @@ export function Header(): JSX.Element {
         </ul>
       </nav>
       <div className="buttons">
-        <button className="transparent-btn default-btn">
-          <PersonIcon />
-        </button>
+        <Link href="/signin">
+          <button className="transparent-btn default-btn">
+            <PersonIcon />
+          </button>
+        </Link>
         {isLogged ? (
           <button className="transparent-btn default-btn">
             <ExitIcon />
