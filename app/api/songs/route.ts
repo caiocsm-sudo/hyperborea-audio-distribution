@@ -1,14 +1,14 @@
-import Song from "@/models/song";
-import { NextRequest, NextResponse } from "next/server";
+import Song from "@/models/song"
+import { NextRequest, NextResponse } from "next/server"
 
 export async function GET() {
-  const songs = await Song.find();
+  const songs = await Song.find()
 
-  return NextResponse.json({ status: "success", songs });
+  return NextResponse.json({ status: "success", songs })
 }
 
 export async function POST(req: NextRequest) {
-  const bodyData = req.body;
+  const bodyData = req.body
 
-  return NextResponse.json({ status: "success", bodyData });
+  return NextResponse.json({ status: "success", bodyData })
 }
