@@ -1,0 +1,24 @@
+.auth__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+
+  & button {
+    width: 100%;
+  }
+
+  & .form--no-account {
+    display: block;
+    color: #888;
+
+    & a {
+      color: #000;
+      text-decoration: underline;
+    }
+  }
+
+  & .warn {
+    color: #c45;
+  }
+}
