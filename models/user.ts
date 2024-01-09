@@ -1,4 +1,6 @@
-import mongoose from "mongoose";
+import connectDb from "@/utils/db";
+import mongoose from "mongoose"
+import validator from "validator"
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -8,6 +10,7 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: [true, "You must provide an e-mail"],
+    validate: validator.isEmail,
   },
   password: {
     type: String,
@@ -16,8 +19,12 @@ const userSchema = new mongoose.Schema({
   downloadsLibrary: {
     type: [mongoose.SchemaTypes.ObjectId],
   },
-});
+})
 
-const User = mongoose.model("User", userSchema);
+if (mongoose.connection.models['User']) {
+  delete mongoose.connection.models['User'];
+}
 
-export default User;
+const User = mongoose.model("User", userSchema)
+
+export default User
