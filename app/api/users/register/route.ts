@@ -29,3 +29,9 @@ export async function POST(req: Request) {
 
   return new Response(JSON.stringify({ status: "success", endUser }))
 }
+
+export async function PATCH(req: Request) {
+  const newUser = await req.json()
+
+  console.log(newUser)
+}
