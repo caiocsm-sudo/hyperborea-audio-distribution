@@ -4,10 +4,7 @@ import "@/styles/auth-form.scss"
 import Link from "next/link"
 import { BaseSyntheticEvent, useState } from "react"
 
-interface UserLogin {
-  email: string
-  password: string
-}
+import { UserLogin } from "@/utils/authProtocols"
 
 export default function SignIn() {
   const emptyUser: UserLogin = { email: "", password: "" }
