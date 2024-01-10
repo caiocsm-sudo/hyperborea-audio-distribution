@@ -1,4 +1,4 @@
-import connectDb from "@/utils/db";
+// import connectDb from "@/utils/db";
 import mongoose from "mongoose"
 import validator from "validator"
 
@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: [true, "You must provide an e-mail"],
+    unique: [true, "email already registered"],
     validate: validator.isEmail,
   },
   password: {
@@ -21,9 +22,9 @@ const userSchema = new mongoose.Schema({
   },
 })
 
-if (mongoose.connection.models['User']) {
-  delete mongoose.connection.models['User'];
-}
+// if (mongoose.connection.models['User']) {
+//   delete mongoose.connection.models['User'];
+// }
 
 const User = mongoose.model("User", userSchema)
 
