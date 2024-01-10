@@ -4,7 +4,7 @@ import "@testing-library/jest-dom";
 import Home from "@/app/page";
 
 describe("testing if there's any reneder issue", () => {
-  it.only("should have been rendered", () => {
+  it("should have been rendered", () => {
     render(<Home />);
 
     expect(screen.getByText("Hyperborea Sound Distribution")).toBeInTheDocument();
