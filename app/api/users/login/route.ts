@@ -10,5 +10,5 @@ export async function POST(req: Request) {
   if (userExists) resMessage = "user exists"
   else resMessage = "user doesn't exist"
 
-  return new Response(resMessage)
+  return new Response(JSON.stringify({ resMessage: resMessage, user: userExists ? userExists : "" }))
 }
