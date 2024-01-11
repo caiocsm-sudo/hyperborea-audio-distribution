@@ -20,14 +20,18 @@
     justify-content: space-between;
   }
   & .close-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: transparent;
     border-radius: 0.5rem;
+    padding: 0.5rem;
     border: none;
     cursor: pointer;
     transition: variables.$def-transition;
 
     &:hover {
-      background-color: var(variables.$dark);
+      background-color: variables.$hyperborea-transparent;
     }
   }
   & .toast__message {
