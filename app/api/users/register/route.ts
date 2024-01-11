@@ -1,33 +1,41 @@
 import { EncryptPassword } from "@/utils/UserClass"
 import User from "@/models/user"
-import connectDb from "@/utils/db"
+// import connectDb from "@/utils/db"
 
 export async function GET() {
-  await connectDb()
-
   const users = await User.find()
 
   return new Response(JSON.stringify(users))
 }
 
 export async function POST(req: Request) {
-  const userData = await req.json()
+  try {
+    const userData = await req.json()
 
-  console.log(userData)
+    console.log(userData)
 
-  const hashedPassword = await EncryptPassword.hashPassword(userData.password)
+    const hashedPassword = await EncryptPassword.hashPassword(userData.password)
 
-  await connectDb()
+    const endUser = await User.create({
+      username: userData.username,
+      email: userData.email,
+      password: hashedPassword,
+    })
 
-  const endUser = await User.create({
-    username: userData.username,
-    email: userData.email,
-    password: hashedPassword,
-  })
+    // to implement -> json web token
 
-  console.log(endUser)
+    console.log(endUser)
 
-  return new Response(JSON.stringify({ status: "success", endUser }))
+    return new Response(JSON.stringify({ status: "success", endUser }))
+  } catch (error: any) {
+    let errorMessage: string = ""
+
+    if (error.keyValue.email) {
+      errorMessage = "Error: email already exists"
+    }
+
+    return new Response(JSON.stringify({ errorMessage, error }));
+  }
 }
 
 export async function PATCH(req: Request) {
