@@ -21,7 +21,7 @@ export default function SignIn() {
   const handleSubmit = async (e: BaseSyntheticEvent) => {
     e.preventDefault()
 
-    const res = await fetch("/api/users/register", {
+    const res = await fetch("/api/users/login", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -29,11 +29,11 @@ export default function SignIn() {
       body: JSON.stringify(user),
     })
 
-    console.log(res.status)
+    const serverRes = await res.json()
 
-    console.log("user signed up");
+    console.log(serverRes)
 
-    setUser(prev => emptyUser)
+    setUser((prev) => emptyUser)
   }
 
   return (
