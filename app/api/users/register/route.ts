@@ -1,6 +1,8 @@
-import { EncryptPassword } from "@/utils/UserClass"
 import User from "@/models/user"
-// import connectDb from "@/utils/db"
+import jwt from "jsonwebtoken"
+import connectDb from "@/utils/db"
+
+import { EncryptPassword } from "@/utils/hashPassword"
 
 export async function GET() {
   const users = await User.find()
@@ -10,6 +12,8 @@ export async function GET() {
 
 export async function POST(req: Request) {
   try {
+    await connectDb()
+
     const userData = await req.json()
 
     console.log(userData)
@@ -22,11 +26,21 @@ export async function POST(req: Request) {
       password: hashedPassword,
     })
 
-    // to implement -> json web token
+    const token = jwt.sign(
+      { id: endUser._id },
+      process.env.JWT_SECRET as string,
+      { expiresIn: "10m" }
+    )
 
-    console.log(endUser)
+    console.log(endUser, token)
 
-    return new Response(JSON.stringify({ status: "success", endUser }))
+    return new Response(
+      JSON.stringify({
+        status: "success",
+        user: { username: endUser.username, email: endUser.email },
+        token,
+      })
+    )
   } catch (error: any) {
     let errorMessage: string = ""
 
@@ -34,7 +48,7 @@ export async function POST(req: Request) {
       errorMessage = "Error: email already exists"
     }
 
-    return new Response(JSON.stringify({ errorMessage, error }));
+    return new Response(JSON.stringify({ errorMessage, error }))
   }
 }
 
