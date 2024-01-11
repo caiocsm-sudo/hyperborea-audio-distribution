@@ -22,9 +22,9 @@ const userSchema = new mongoose.Schema({
   },
 })
 
-// if (mongoose.connection.models['User']) {
-//   delete mongoose.connection.models['User'];
-// }
+if (mongoose.connection.models['User']) {
+  delete mongoose.connection.models['User'];
+}
 
 const User = mongoose.model("User", userSchema)
 
