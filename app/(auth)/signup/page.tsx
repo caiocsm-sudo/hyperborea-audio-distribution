@@ -3,14 +3,16 @@
 import Toast from "@/components/Toast"
 import "@/styles/auth-form.scss"
 import Link from "next/link"
-import { BaseSyntheticEvent, useState } from "react"
+import { BaseSyntheticEvent, useContext, useState } from "react"
+import { ToastContext, ToastContextProtocol } from "@/utils/controllers/ToastContext"
 
-import { UserProtocol, ToastOptProtocol, emptyToast, emptyUser } from "@/utils/authProtocols"
+import { UserProtocol, emptyToast, emptyUser } from "@/utils/authProtocols"
 
 export default function SignUp() {
   const [user, setUser] = useState<UserProtocol>(emptyUser)
   const [errorMessage, setErrorMessage] = useState<UserProtocol>(emptyUser)
-  const [toastOpts, setToastOpts] = useState<ToastOptProtocol>(emptyToast)
+  // const [toastOpts, setToastOpts] = useState<ToastOptProtocol>(emptyToast)
+  const [toastOpts, setToastOpts] = useContext(ToastContext) as ToastContextProtocol
 
   const setErrorFn = (prev: UserProtocol, field: string, message: string) => {
     return { ...prev, [field]: message }
@@ -47,17 +49,29 @@ export default function SignUp() {
       body: JSON.stringify(user),
     })
 
-    console.log(res.status)
+    const serverResponse = await res.json()
+
+    console.log(serverResponse);
 
     if (res.status === 200 || res.status === 500) {
       setToastOpts({
         visible: true,
         status: "Success",
-        message: "User created successfully"
+        message: "User created successfully",
+      })
+    } else if (serverResponse.errorMessage.contains("Error")) {
+      setToastOpts({
+        visible: true,
+        status: "Error",
+        message: serverResponse.errorMessage,
       })
     }
 
     setUser((prev) => emptyUser)
+
+    setTimeout(() => {
+      setToastOpts(emptyToast)
+    }, 3000)
   }
 
   return (
@@ -130,7 +144,7 @@ export default function SignUp() {
           </span>
         </div>
       </form>
-      <Toast visible={toastOpts.visible} status={toastOpts.status} message={toastOpts.message} />
+      <Toast />
     </>
   )
 }
