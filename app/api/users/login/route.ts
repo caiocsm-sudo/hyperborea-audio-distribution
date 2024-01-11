@@ -7,8 +7,13 @@ export async function POST(req: Request) {
 
   const userExists = await User.findOne({ email: userToLog.email })
 
-  if (userExists) resMessage = "user exists"
-  else resMessage = "user doesn't exist"
+  if (userExists) resMessage = "User found"
+  else resMessage = "User not found"
 
-  return new Response(JSON.stringify({ resMessage: resMessage, user: userExists ? userExists : "" }))
+  return new Response(
+    JSON.stringify({
+      resMessage: resMessage,
+      user: userExists ? userExists : "",
+    })
+  )
 }
