@@ -1,4 +1,10 @@
-export interface UserProtocol {
+// not password because it will not be recieved back, only sent
+export interface UserAbstract {
+  username: string
+  email: string
+}
+
+export interface UserProtocol extends UserAbstract {
   username: string
   email: string
   password: string
@@ -12,7 +18,7 @@ export interface ToastOptProtocol {
   message: string
 }
 
-export interface UserLogin {
+export interface UserLogin extends UserAbstract {
   email: string
   password: string
 }
@@ -28,4 +34,3 @@ export const emptyToast: ToastOptProtocol = {
   status: "Success",
   message: "",
 }
-
