@@ -6,13 +6,16 @@ import Link from "next/link"
 import { BaseSyntheticEvent, useContext, useState } from "react"
 import { ToastContext, ToastContextProtocol } from "@/utils/controllers/ToastContext"
 
+import useAuth from "@/utils/hooks/useAuth"
+
 import { UserProtocol, emptyToast, emptyUser } from "@/utils/authProtocols"
 
 export default function SignUp() {
   const [user, setUser] = useState<UserProtocol>(emptyUser)
   const [errorMessage, setErrorMessage] = useState<UserProtocol>(emptyUser)
-  // const [toastOpts, setToastOpts] = useState<ToastOptProtocol>(emptyToast)
-  const [toastOpts, setToastOpts] = useContext(ToastContext) as ToastContextProtocol
+  const [_toastOpts, setToastOpts] = useContext(ToastContext) as ToastContextProtocol
+
+  const { register } = useAuth();
 
   const setErrorFn = (prev: UserProtocol, field: string, message: string) => {
     return { ...prev, [field]: message }
@@ -41,19 +44,19 @@ export default function SignUp() {
     e.preventDefault()
     if (errorMessage.email || errorMessage.username) return
 
-    const res = await fetch("/api/users/register", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(user),
-    })
+    // const res = await fetch("/api/users/register", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-type": "application/json",
+    //   },
+    //   body: JSON.stringify(user),
+    // })
 
-    const serverResponse = await res.json()
+    const serverResponse = await register(user); 
 
     console.log(serverResponse);
 
-    if (res.status === 200 || res.status === 500) {
+    if (serverResponse.status === 'success' || serverResponse) {
       setToastOpts({
         visible: true,
         status: "Success",
