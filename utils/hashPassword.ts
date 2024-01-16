@@ -14,8 +14,6 @@ export class EncryptPassword {
   static async comparePasswords(passwdClient: string, passwdServer: string) {
     const isPasswordCorrect = await bcrypt.compare(passwdClient, passwdServer)
 
-    console.log(isPasswordCorrect);
-
     return isPasswordCorrect;
   }
 }
