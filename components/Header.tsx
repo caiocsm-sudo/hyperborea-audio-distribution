@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { HamburgerMenuIcon, PersonIcon, ExitIcon } from "@radix-ui/react-icons";
+import Cookies from "js-cookie";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -12,6 +13,11 @@ import "@/styles/header.scss";
 export function Header(): JSX.Element {
   const [isLogged, _setIsLogged] = useState<boolean>(false);
 
+  const handleRemoveCookies = (): void => {
+    Cookies.remove("user");
+    Cookies.remove("token");
+  }
+
   return (
     <header className="header">
       <div className="img-container">
@@ -20,7 +26,7 @@ export function Header(): JSX.Element {
         </Link>
       </div>
       <nav>
-        <button className="default-btn transparent-btn hidden resp-nav-btn">
+        <button className="default-btn transparent-btn hidden resp-nav-btn" onClick={handleRemoveCookies}>
           <HamburgerMenuIcon />
         </button>
         <ul className="ulist">
