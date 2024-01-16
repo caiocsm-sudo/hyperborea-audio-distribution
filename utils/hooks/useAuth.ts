@@ -1,5 +1,6 @@
 import { UserAbstract } from "../authProtocols"
 import { UserAuth } from "../UserClass"
+import Cookies from "js-cookie"
 
 interface AuthReturn {
   register: (credentials: UserAbstract) => Promise<any>
@@ -10,7 +11,7 @@ const useAuth = (): AuthReturn => {
   const register = async (credentials: UserAbstract): Promise<any> => {
     const registerResponse = await UserAuth.register(credentials)
 
-    console.log(registerResponse)
+    Cookies.set("user", registerResponse.user)
 
     return registerResponse
   }
