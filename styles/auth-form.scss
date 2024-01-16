@@ -1,3 +1,5 @@
+@use "./variables/variables.scss";
+
 .auth__form {
   display: flex;
   flex-direction: column;
@@ -20,5 +22,23 @@
 
   & .warn {
     color: #c45;
+  }
+
+  & hr {
+    border: 1px solid variables.$hyperborea-transparent;
+  }
+
+  & .special-auth--google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    background-color: transparent;
+    color: variables.$hyperborea;
+    border: 1px solid variables.$hyperborea-transparent;
+    transition: variables.$def-transition;
+    &:hover {
+      background-color: variables.$white;
+    }
   }
 }
