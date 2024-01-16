@@ -4,7 +4,10 @@ import Toast from "@/components/Toast"
 import "@/styles/auth-form.scss"
 import Link from "next/link"
 import { BaseSyntheticEvent, useContext, useState } from "react"
-import { ToastContext, ToastContextProtocol } from "@/utils/controllers/ToastContext"
+import {
+  ToastContext,
+  ToastContextProtocol,
+} from "@/utils/controllers/ToastContext"
 
 import useAuth from "@/utils/hooks/useAuth"
 
@@ -13,9 +16,11 @@ import { UserProtocol, emptyToast, emptyUser } from "@/utils/authProtocols"
 export default function SignUp() {
   const [user, setUser] = useState<UserProtocol>(emptyUser)
   const [errorMessage, setErrorMessage] = useState<UserProtocol>(emptyUser)
-  const [_toastOpts, setToastOpts] = useContext(ToastContext) as ToastContextProtocol
+  const [_toastOpts, setToastOpts] = useContext(
+    ToastContext
+  ) as ToastContextProtocol
 
-  const { register } = useAuth();
+  const { register } = useAuth()
 
   const setErrorFn = (prev: UserProtocol, field: string, message: string) => {
     return { ...prev, [field]: message }
@@ -27,6 +32,7 @@ export default function SignUp() {
     })
 
     // FIXME: if it can pass to the last block, every error goes away
+    // IDEA: Abstract every input field to a component to have it's own validator
     if (field === "username" && val.length >= 20) {
       setErrorMessage((prev) => setErrorFn(prev, field, "The name is too long"))
     } else if (field === "email" && !val.includes("@")) {
@@ -44,19 +50,11 @@ export default function SignUp() {
     e.preventDefault()
     if (errorMessage.email || errorMessage.username) return
 
-    // const res = await fetch("/api/users/register", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-type": "application/json",
-    //   },
-    //   body: JSON.stringify(user),
-    // })
+    const serverResponse = await register(user)
 
-    const serverResponse = await register(user); 
+    console.log(serverResponse)
 
-    console.log(serverResponse);
-
-    if (serverResponse.status === 'success' || serverResponse) {
+    if (serverResponse.status === "success" || serverResponse) {
       setToastOpts({
         visible: true,
         status: "Success",
@@ -141,6 +139,7 @@ export default function SignUp() {
             Sign Up
           </button>
         </div>
+        <hr />
         <div>
           <span className="form--no-account">
             Already have an account? <Link href="/signin">Sign in</Link>
