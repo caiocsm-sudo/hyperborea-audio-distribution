@@ -7,7 +7,7 @@ const apiDataTest = {
   age: 19,
 };
 
-export async function GET(req: NextApiRequest, res: NextResponse) {
+export async function GET(_req: NextApiRequest, res: NextResponse) {
   console.log(apiDataTest);
 
   return NextResponse.json(apiDataTest);
