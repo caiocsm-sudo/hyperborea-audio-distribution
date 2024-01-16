@@ -1,7 +1,6 @@
 import User from "@/models/user"
-import jwt from "jsonwebtoken"
 import connectDb from "@/utils/db"
-
+import genToken from "@/utils/api/genToken"
 import { EncryptPassword } from "@/utils/hashPassword"
 
 export async function GET() {
@@ -14,10 +13,9 @@ export async function POST(req: Request) {
   try {
     await connectDb()
 
+    console.log(req.headers)
+
     const userData = await req.json()
-
-    console.log(userData)
-
     const hashedPassword = await EncryptPassword.hashPassword(userData.password)
 
     const endUser = await User.create({
@@ -26,19 +24,12 @@ export async function POST(req: Request) {
       password: hashedPassword,
     })
 
-    const token = jwt.sign(
-      { id: endUser._id },
-      process.env.JWT_SECRET as string,
-      { expiresIn: "10m" }
-    )
-
-    console.log(endUser, token)
+    const token = genToken(endUser._id)
 
     return new Response(
       JSON.stringify({
         status: "success",
-        user: { username: endUser.username, email: endUser.email },
-        token,
+        user: { username: endUser.username, token },
       })
     )
   } catch (error: any) {

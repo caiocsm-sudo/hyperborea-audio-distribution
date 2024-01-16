@@ -1,25 +1,30 @@
 import User from "@/models/user"
+import connectDb from "@/utils/db"
 import { EncryptPassword } from "@/utils/hashPassword"
+import genToken from "@/utils/api/genToken"
 
 export async function POST(req: Request) {
   try {
+    await connectDb()
+
     const userToLog = await req.json()
+    const dbUser = await User.findOne({ email: userToLog.email }).select(
+      "+password"
+    )
 
-    let resMessage: string
+    const correctPw = await EncryptPassword.comparePasswords(
+      userToLog.password,
+      dbUser!.password
+    )
 
-    const userExists = await User.findOne({ email: userToLog.email })
+    if (!correctPw || !dbUser) throw new Error("Incorrect email or password.")
 
-    if (!userExists) throw new Error("User doesn't exist")
-
-    EncryptPassword.comparePasswords(userToLog.password, userExists.password)
-
-    if (userExists) resMessage = "User found"
-    else resMessage = "User not found"
+    const token = genToken(dbUser._id);
 
     return new Response(
       JSON.stringify({
-        resMessage: resMessage,
-        user: userExists ? userExists : "",
+        resMessage: "success",
+        user: { id: dbUser._id, username: dbUser.username, token },
       })
     )
   } catch (error) {
