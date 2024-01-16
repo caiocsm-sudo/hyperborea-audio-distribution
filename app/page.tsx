@@ -12,8 +12,16 @@ export default function Home() {
               jazz and funk music to beyond imagination, as far as we can.
             </p>
           </div>
+          <div>
           <div className="main__links">
-            <i></i>
+            <i>Bandcamp</i>
+          </div>
+          <div className="main__links">
+            <i>Github</i>
+          </div>
+          <div className="main__links">
+            <i>Youtube</i>
+          </div>
           </div>
         </div>
       </section>
