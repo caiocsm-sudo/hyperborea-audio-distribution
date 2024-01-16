@@ -17,9 +17,10 @@ const albumSchema = new mongoose.Schema(
       required: [true, "An album must have an cover image"],
     },
     genre: {
-      type: String,
-      required: [true, "An album must have a genre"],
+      type: [String],
+      required: [true, "An album must have at least one genre"],
       trim: true,
+      minLength: 1,
     },
     releaseYear: {
       type: Number,
