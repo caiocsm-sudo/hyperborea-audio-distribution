@@ -1,4 +1,3 @@
-import axios from "axios"
 import "@/styles/about.scss"
 
 export default async function About() {

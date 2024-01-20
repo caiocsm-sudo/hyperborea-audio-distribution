@@ -13,15 +13,15 @@ export default function Home() {
             </p>
           </div>
           <div>
-          <div className="main__links">
-            <i>Bandcamp</i>
-          </div>
-          <div className="main__links">
-            <i>Github</i>
-          </div>
-          <div className="main__links">
-            <i>Youtube</i>
-          </div>
+            <div className="main__links">
+              <i>Bandcamp</i>
+            </div>
+            <div className="main__links">
+              <i>Github</i>
+            </div>
+            <div className="main__links">
+              <i>Youtube</i>
+            </div>
           </div>
         </div>
       </section>
