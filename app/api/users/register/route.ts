@@ -13,8 +13,6 @@ export async function POST(req: Request) {
   try {
     await connectDb()
 
-    console.log(req.headers)
-
     const userData = await req.json()
     const hashedPassword = await EncryptPassword.hashPassword(userData.password)
 
@@ -26,11 +24,13 @@ export async function POST(req: Request) {
 
     const token = genToken(endUser._id)
 
+    console.log(endUser)
+
     return new Response(
       JSON.stringify({
         status: "success",
-        user: { username: endUser.username, token },
-      })
+        user: { username: endUser.username, email: endUser.email, token },
+      }),
     )
   } catch (error: any) {
     let errorMessage: string = ""
