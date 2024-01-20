@@ -22,13 +22,24 @@ const userSchema = new mongoose.Schema(
     downloadsLibrary: {
       type: [mongoose.SchemaTypes.ObjectId],
     },
+    admin: {
+      type: Boolean,
+      default: false,
+    },
   },
-  { collection: "users" }
+  { collection: "users" },
 )
 
 if (mongoose.connection.models["User"]) {
   delete mongoose.connection.models["User"]
 }
+
+/*
+userSchema.pre("find", function (next: () => void) {
+  this.select("-admin")
+  next()
+})
+ * */
 
 const User = mongoose.model("User", userSchema)
 

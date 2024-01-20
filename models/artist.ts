@@ -1,4 +1,5 @@
 import mongoose from "mongoose"
+import Album from "./album"
 
 const artistSchema = new mongoose.Schema(
   {
@@ -8,6 +9,9 @@ const artistSchema = new mongoose.Schema(
       trim: true,
       minLength: 2,
       maxLength: 40,
+    },
+    artistImage: {
+      type: [String],
     },
     bio: {
       type: String,
@@ -19,10 +23,15 @@ const artistSchema = new mongoose.Schema(
       type: [String],
     },
     releases: {
-      type: [String],
+      type: [mongoose.SchemaTypes.ObjectId],
+      ref: "Album",
     },
   },
-  { collection: "artists" }
+  {
+    collection: "artists",
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+  },
 )
 
 const Artist = mongoose.model("Artist", artistSchema)

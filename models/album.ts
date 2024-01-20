@@ -1,4 +1,5 @@
 import mongoose from "mongoose"
+import Song from "./song"
 
 const albumSchema = new mongoose.Schema(
   {
@@ -8,9 +9,10 @@ const albumSchema = new mongoose.Schema(
       trim: true,
     },
     artist: {
-      type: String,
+      type: mongoose.SchemaTypes.ObjectId,
       required: [true, "An album must be from an artist"],
       trim: true,
+      ref: "Artist",
     },
     coverImage: {
       type: String,
@@ -28,13 +30,21 @@ const albumSchema = new mongoose.Schema(
       immutable: true,
     },
     trackList: {
-      // maybe later change to [String] instead of ObjectId;
       type: [mongoose.SchemaTypes.ObjectId],
-      min: 2,
+      ref: "Song",
+      minLength: 1,
     },
   },
-  { collection: "albums" }
+  {
+    collection: "albums",
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+  },
 )
+
+albumSchema.pre("save", async function (next: any) {
+  next()
+})
 
 const Album = mongoose.model("Album", albumSchema)
 
