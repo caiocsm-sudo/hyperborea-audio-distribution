@@ -1,22 +1,23 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import { NextResponse } from "next/server";
+import { NextApiRequest, NextApiResponse } from "next"
+import { NextResponse } from "next/server"
+import supabase from "@/utils/connectSupa"
 
 const apiDataTest = {
   name: "Ckaeiront",
   real_name: "Antonio Joseph Souza",
   age: 19,
-};
+}
 
 export async function GET(_req: NextApiRequest, res: NextResponse) {
-  console.log(apiDataTest);
+  console.log(apiDataTest)
 
-  return NextResponse.json(apiDataTest);
+  return NextResponse.json(apiDataTest)
 }
 
 export async function POST(req: NextApiRequest, res: NextApiRequest) {
   if (req.body) {
-    console.log(req.body);
+    console.log(req.body)
   } else {
-    console.log(`this is req.body => ${req.body}`);
+    console.log(`this is req.body => ${req.body}`)
   }
 }
