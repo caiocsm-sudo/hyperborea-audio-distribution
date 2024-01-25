@@ -1,4 +1,4 @@
-import mongoose from "mongoose"
+import mongoose, { Query } from "mongoose"
 import Song from "./song"
 
 const albumSchema = new mongoose.Schema(
@@ -42,8 +42,16 @@ const albumSchema = new mongoose.Schema(
   },
 )
 
+/*
 albumSchema.pre("save", async function (next: any) {
+
   next()
+})
+*/
+
+albumSchema.pre<Query<any, any>>(/^find/, async function (_next: any) {
+  this.populate("trackList")
+  // next()
 })
 
 const Album = mongoose.model("Album", albumSchema)
