@@ -4,6 +4,11 @@ import "@/styles/extras.scss"
 import { ImageIcon } from "@radix-ui/react-icons"
 import { BaseSyntheticEvent, useState } from "react"
 
+import supabase from "@/utils/connectSupa"
+import Link from "next/link"
+
+import { redirect } from "next/navigation"
+
 interface Album {
   title: string
   artist: string
@@ -56,9 +61,15 @@ export default function Extras() {
       body: JSON.stringify(album),
     })
 
+    const { data, error } = await supabase.storage
+      .from("tunes")
+      .upload("covers", album.coverImage)
+
     const serverRes = await res.json()
 
     console.log(serverRes)
+
+    redirect("/extras/album/add/")
   }
 
   return (
@@ -157,6 +168,17 @@ export default function Extras() {
             >
               Submit
             </button>
+          </div>
+          <div>
+            <span>
+              Upload an artist{" "}
+              <Link
+                style={{ textDecoration: "underline", color: "#5b82b5" }}
+                href="/upload/artist"
+              >
+                here
+              </Link>
+            </span>
           </div>
         </form>
       </div>
