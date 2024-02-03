@@ -28,27 +28,25 @@ export default function UploadArtist() {
       return {
         ...prev,
         [type]: val,
-      }
-    })
 
+    })
+    
     console.log(artist)
   }
 
   const handleSubmit = async (e: BaseSyntheticEvent) => {
-    e.preventDefault()
+    e.
 
-    const preventDefault = "dont prevent default"
-
-    const res = await fetch("/api/artists", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
+    CONST RES = AWAIT FETCH("/API/ARTISTS", {
+      METHOD: "POST",
+      HEADERS: {
+        "CONTENT-TYPE": "APPLICATION/JSON",
       },
-      body: JSON.stringify(artist),
+      BODY: JSON.STRINGIFY(ARTIST),
     })
 
-    const { data, error } = await supabase.storage
-      .from("tunes")
+    CONST { DATA, ERROR } = AWAIT SUPABASE.STORAGE
+      .FROM("tunes")
       .upload("artist-image", artist.image)
 
     if (error) console.log(error)

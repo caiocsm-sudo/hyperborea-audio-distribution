@@ -21,6 +21,10 @@
       flex-direction: column;
       gap: 0.5rem;
 
+      & .form__info {
+        color: variables.$gray;
+      }
+
       & .dual-form {
         display: flex;
         gap: 0.8rem;
@@ -51,6 +55,7 @@
           display: none;
         }
       }
+
       & button {
         width: 100%;
       }
